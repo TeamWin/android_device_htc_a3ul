@@ -1,6 +1,8 @@
 # inherit from the proprietary version
 -include vendor/htc/a3ul/BoardConfigVendor.mk
 
+TARGET_BOARD_PLATFORM := msm8226
+
 # Architecture
 TARGET_ARCH := arm
 TARGET_ARCH_VARIANT := armv7-a-neon
@@ -17,13 +19,9 @@ TARGET_BOOTLOADER_BOARD_NAME := a3ul
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=qcom user_debug=31 ehci-hcd.park=3
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_PAGESIZE := 2048
-BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02008000 --tags_offset 0x01e00000
+BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02008000 --dt device/htc/a3ul/dtb --tags_offset 0x01e00000
 
-# Build kernel source and use DTB
-TARGET_KERNEL_CONFIG := a3ul_defconfig
-TARGET_KERNEL_SOURCE := kernel/htc/a3ul
-BOARD_CUSTOM_BOOTIMG_MK := device/htc/a3ul/releasetools/mkbootimg.mk
-BOARD_KERNEL_SEPARATED_DT := true
+TARGET_PREBUILT_KERNEL := device/htc/a3ul/kernel
 
 BOARD_BOOTIMAGE_PARTITION_SIZE := 0x01000000
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 0x01800000
@@ -34,12 +32,12 @@ BOARD_FLASH_BLOCK_SIZE := 512
 # Recovery
 BOARD_HAS_NO_SELECT_BUTTON := true
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
-BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
+#BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
 RECOVERY_SDCARD_ON_DATA := true
 
 #TWRP config:
-DEVICE_RESOLUTION := 540x960
+DEVICE_RESOLUTION := 480x854
 TW_NO_USB_STORAGE := true
 TW_NO_SCREEN_BLANK := true
 TW_MAX_BRIGHTNESS := 255
